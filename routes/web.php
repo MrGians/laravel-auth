@@ -20,4 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', 'Admin\HomeController@index')->middleware('auth')->name('admin.home');
+
+// Protected Admin Routes
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
+    
+    // Admin Homepage
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // Resource Post
+    // TODO Add => Route::resource('posts', 'PostController');
+});
