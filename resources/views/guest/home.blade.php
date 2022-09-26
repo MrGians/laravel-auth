@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel | Guest Home
                 </div>
 
                 <div class="links">
