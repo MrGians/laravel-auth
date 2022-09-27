@@ -25,15 +25,15 @@
       </div>
     </div>
     {{-- Thumbnail --}}
-    <div class="col-10">
-      <div class="form-group">
+    <div class="col-10 d-flex align-items-center">
+      <div class="form-group w-100">
         <label for="thumb">Immagine</label>
         <input type="url" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb" value="{{ old('thumb', $post->thumb) }}">
       </div>
     </div>
     {{-- Thumb Preview --}}
-    <div class="col-10">
-      <img class="img-fluid" src="" alt="Post Preview" id="thumb-preview">
+    <div class="col-2">
+      <img class="img-fluid" src="https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=" alt="Post Preview" id="thumb-preview">
     </div>
     {{-- Content --}}
     <div class="col-12">

@@ -37317,9 +37317,7 @@ var thumbPreview = document.getElementById("thumb-preview");
 var thumbInput = document.getElementById("thumb");
 var placeholder = "https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=";
 thumbInput.addEventListener("input", function () {
-  var _thumbInput$value;
-
-  thumbPreview.src = (_thumbInput$value = thumbInput.value) !== null && _thumbInput$value !== void 0 ? _thumbInput$value : placeholder;
+  thumbPreview.src = thumbInput.value || placeholder;
 });
 
 /***/ }),
