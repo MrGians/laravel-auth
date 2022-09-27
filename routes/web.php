@@ -23,7 +23,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::get('/', 'HomeController@index')->name('home');
     
     // Resource Post
-    // TODO Add => Route::resource('posts', 'PostController');
+    Route::resource('posts', 'PostController');
 
     // Undefined Routes | 404
     Route::get('/{any?}', function () {
