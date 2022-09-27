@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
   <div class="mb-4 d-flex align-items-center justify-content-between">
     <h1>Lista Post</h1>
     <a class="btn btn-sm btn-success ml-2" href="{{ route('admin.posts.create') }}">
@@ -51,5 +50,4 @@
     
   </tbody>
 </table>
-</div>
 @endsection
