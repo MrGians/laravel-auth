@@ -26,7 +26,7 @@
             <a class="btn btn-warning ml-2" href="{{ route('admin.posts.edit', $post) }}">
               <i class="fa-solid fa-pen-to-square"></i> Modifica
             </a>
-            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="ml-2">
+            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="delete-form ml-2">
               @method('DELETE')
               @csrf
               <button class="btn btn-danger btn-outline" type="submit">
