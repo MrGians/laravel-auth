@@ -1,7 +1,7 @@
 const formsToDelete = document.querySelectorAll(".delete-form");
 
 formsToDelete.forEach((form) => {
-    form.addEventListener("input", (e) => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const confirmation = confirm(
