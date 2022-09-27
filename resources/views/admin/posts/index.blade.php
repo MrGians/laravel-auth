@@ -47,7 +47,11 @@
       <th class="text-center h2" colspan="6">Non è presente nessun Post.</th>
     </tr>
     @endforelse
-    
   </tbody>
 </table>
+{{-- Pagination --}}
+  @if($posts->hasPages())
+    {{ $posts->links() }}
+  @endif
+
 @endsection
