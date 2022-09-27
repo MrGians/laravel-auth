@@ -31,6 +31,10 @@
         <input type="url" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb" value="{{ old('thumb', $post->thumb) }}">
       </div>
     </div>
+    {{-- Thumb Preview --}}
+    <div class="col-10">
+      <img class="img-fluid" src="" alt="Post Preview" id="thumb-preview">
+    </div>
     {{-- Content --}}
     <div class="col-12">
       <div class="form-group">

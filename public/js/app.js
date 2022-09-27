@@ -37288,6 +37288,42 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin/confirm-delete.js":
+/*!**********************************************!*\
+  !*** ./resources/js/admin/confirm-delete.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var formsToDelete = document.querySelectorAll(".delete-form");
+formsToDelete.forEach(function (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var confirmation = confirm("Vuoi cancellare definitivamente questo Post? L'azione è irreversibile");
+    if (confirmation) form.submit();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/img-preview.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/img-preview.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var thumbPreview = document.getElementById("thumb-preview");
+var thumbInput = document.getElementById("thumb");
+var placeholder = "https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=";
+thumbInput.addEventListener("input", function () {
+  var _thumbInput$value;
+
+  thumbPreview.src = (_thumbInput$value = thumbInput.value) !== null && _thumbInput$value !== void 0 ? _thumbInput$value : placeholder;
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37301,6 +37337,10 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./admin/confirm-delete */ "./resources/js/admin/confirm-delete.js");
+
+__webpack_require__(/*! ./admin/img-preview */ "./resources/js/admin/img-preview.js");
 
 /***/ }),
 
