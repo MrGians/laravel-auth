@@ -14,7 +14,7 @@ class AddThumbToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('thumb')->nullable();
+            $table->string('thumb')->nullable()->after('content');
         });
     }
 
