@@ -56,8 +56,39 @@
   </tbody>
 </table>
 {{-- Pagination --}}
-  @if($posts->hasPages())
-    {{ $posts->links() }}
-  @endif
+@if($posts->hasPages())
+  {{ $posts->links() }}
+@endif
+<hr/>
 
+{{-- Post List per Category --}}
+<h2 class="my-3 text-center">Elenco Post per Categoria</h2>
+
+<div id="accordion">
+  @foreach ($categories as $category)
+  <div class="card">
+    {{-- Accordion Head --}}
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-{{ $category->color }}" data-toggle="collapse" data-target="#{{ $category->label }}" aria-expanded="true" aria-controls="{{ $category->label }}">
+          {{ $category->label }} [{{ count($category->posts) }}]
+        </button>
+      </h5>
+    </div>
+    {{-- Accordion Content --}}
+    <div id="{{ $category->label }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          @forelse ($category->posts as $category_post)
+            <li><a href="{{ route('admin.posts.show', $category_post) }}">{{ $category_post->title }}</a></li>
+          @empty
+            <li>Nessun Post associato a questa Categoria</li>
+          @endforelse
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  @endforeach
+</div>
 @endsection

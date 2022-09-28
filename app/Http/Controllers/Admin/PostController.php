@@ -20,7 +20,9 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('updated_at', 'DESC')
         ->paginate(15);
-        return view('admin.posts.index', compact('posts'));
+        $categories = Category::all();
+        
+        return view('admin.posts.index', compact('posts', 'categories'));
     }
 
     /**
