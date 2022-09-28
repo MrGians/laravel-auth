@@ -12,6 +12,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Titolo</th>
+      <th scope="col">Categoria</th>
       <th scope="col">Slug</th>
       <th scope="col">Ultima Modifica</th>
       <th scope="col">Data Creazione</th>
@@ -23,6 +24,13 @@
     <tr>
       <th scope="row">{{ $post->id }}</th>
       <td>{{ $post->title }}</td>
+      <td>
+        @if ($post->category_id)
+          {{ $post->category->label }}
+        @else
+          Nessuna            
+        @endif
+      </td>
       <td>{{ $post->slug }}</td>
       <td>{{ $post->updated_at }}</td>
       <td>{{ $post->created_at }}</td>
@@ -44,7 +52,7 @@
     </tr>
     @empty
     <tr>
-      <th class="text-center h2" colspan="6">Non è presente nessun Post.</th>
+      <th class="text-center h2" colspan="7">Non è presente nessun Post.</th>
     </tr>
     @endforelse
   </tbody>

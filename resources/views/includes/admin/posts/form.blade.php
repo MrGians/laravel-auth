@@ -10,10 +10,22 @@
   @csrf
   <div class="row">
     {{-- Title --}}
-    <div class="col-12">
+    <div class="col-9">
       <div class="form-group">
         <label for="title">Titolo</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $post->title) }}" required>
+      </div>
+    </div>
+    {{-- Caategory --}}
+    <div class="col-3">
+      <div class="form-group">
+        <label for="category_id">Categoria</label>
+        <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+        <option value="">Nessuna Categoria</option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->label }}</option>
+        @endforeach
+        </select>
       </div>
     </div>
     {{-- Thumbnail --}}
