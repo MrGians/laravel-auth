@@ -62,6 +62,7 @@ class PostController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
+        $data['is_published'] = array_key_exists('is_published', $data);
         $post = new Post();
         $post->fill($data);
         $post->save();
@@ -119,6 +120,7 @@ class PostController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
+        $data['is_published'] = array_key_exists('is_published', $data);
         $post->update($data);
         
         return view('admin.posts.show', compact('post'))

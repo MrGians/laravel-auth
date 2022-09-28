@@ -46,8 +46,16 @@
         <textarea type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content', $post->content) }}</textarea>
       </div>
     </div>
+    {{-- Is Published --}}
+    <div class="col-12">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" @if(old('is_published', $post->is_published)) checked @endif >
+        <label class="form-check-label" for="is_published">Check me out</label>
+      </div>
+    </div>
     {{-- Actions --}}
     <div class="col-12">
+      <hr/>
       <div class="form-group d-flex justify-content-between">
         <a class="btn btn-secondary ml-2" href="@if($post->exists){{ route('admin.posts.show', $post) }}@else{{ route('admin.posts.index') }}@endif">
           <i class="fa-solid fa-arrow-rotate-left"></i> Indietro
