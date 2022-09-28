@@ -10,7 +10,12 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{ $post->title }}</h5>
+          <h3 class="card-title">{{ $post->title }}</h3>
+          <h6>Categoria: 
+            <span class="badge badge-{{ $post->category->color ?? 'secondary'}}">
+              {{ $post->category->label ?? 'Nessuna'}}
+            </span> 
+          </h6>
           <p class="card-text">{{ $post->content }}</p>
           <p class="card-text"><small class="text-muted">Creato il: {{ $post->created_at }}</small></p>
           <p class="card-text"><small class="text-muted">Ultima Modifica: {{ $post->updated_at }}</small></p>

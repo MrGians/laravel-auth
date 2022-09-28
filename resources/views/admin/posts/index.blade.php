@@ -25,11 +25,9 @@
       <th scope="row">{{ $post->id }}</th>
       <td>{{ $post->title }}</td>
       <td>
-        @if ($post->category_id)
-          {{ $post->category->label }}
-        @else
-          Nessuna            
-        @endif
+          <span class="badge badge-{{ $post->category->color ?? 'secondary'}}">
+            {{ $post->category->label ?? 'Nessuna'}}
+          </span>            
       </td>
       <td>{{ $post->slug }}</td>
       <td>{{ $post->updated_at }}</td>
