@@ -14,6 +14,7 @@
       <th scope="col">Titolo</th>
       <th scope="col">Categoria</th>
       <th scope="col">Slug</th>
+      <th scope="col">Stato</th>
       <th scope="col">Ultima Modifica</th>
       <th scope="col">Data Creazione</th>
       <th scope="col">Azioni</th>
@@ -30,6 +31,15 @@
           </span>            
       </td>
       <td>{{ $post->slug }}</td>
+      <td class="align-middle">
+        <form action="{{ route('admin.posts.toggle', $post) }}" method="POST">
+          @method('PATCH')
+          @csrf
+          <button class="btn btn-outline">
+            <i class="fa-2x fa-solid fa-toggle-{{ $post->is_published ? 'on' : 'off' }} text-{{ $post->is_published ? 'success' : 'danger' }}"></i>
+          </button>
+        </form>
+      </td>
       <td>{{ $post->updated_at }}</td>
       <td>{{ $post->created_at }}</td>
       <td class="d-flex">
@@ -50,7 +60,7 @@
     </tr>
     @empty
     <tr>
-      <th class="text-center h2" colspan="7">Non è presente nessun Post.</th>
+      <th class="text-center h2" colspan="8">Non è presente nessun Post.</th>
     </tr>
     @endforelse
   </tbody>

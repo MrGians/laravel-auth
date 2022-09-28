@@ -137,4 +137,21 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')
         ->with('message', 'Il Post è stato eliminato correttamente')->with('type', 'success');
     }
+
+    /**
+     * Toggle is_published column from posts table.
+     *
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function toggle(Post $post)
+    {
+        $post->is_published = !$post->is_published;
+        $post->save();
+
+        $status = $post->is_published ? 'Pubblicato' : 'Rimosso';
+        
+        return redirect()->route('admin.posts.index')
+        ->with('message', "Post \"$post->title\" $status correttamente")->with('type', 'success');
+    }
 }
