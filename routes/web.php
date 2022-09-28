@@ -24,6 +24,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     
     // Resource Post
     Route::resource('posts', 'PostController');
+    Route::patch('/posts/{post}/toggle', 'PostController@toggle')->name('posts.toggle');
 
     // Resource Category
     Route::resource('categories', 'CategoryController');
