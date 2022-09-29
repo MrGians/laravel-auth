@@ -21,9 +21,9 @@
       <th scope="row">{{ $user->id }}</th>
 
       @if($user->detail)
-      <td>{{ $user->detail->first_name }}</td>
-      <td>{{ $user->detail->last_name }}</td>
-      <td>{{ $user->detail->phone }}</td>
+      <td>{{ $user->detail->first_name ?? 'N/D' }}</td>
+      <td>{{ $user->detail->last_name ?? 'N/D' }}</td>
+      <td>{{ $user->detail->phone ?? 'N/D' }}</td>
       @elseif($user->id == Auth::id())
       <td class="text-center" colspan="3">
         <a class="btn btn-sm btn-success ml-2" href="{{ route('admin.users.create') }}">
