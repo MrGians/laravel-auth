@@ -31,6 +31,8 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 
     // User Details Page
     Route::get('/users', 'UserController@index')->name('users.index');
+    Route::get('/users/create', 'UserController@create')->name('users.create');
+    Route::post('/users', 'UserController@store')->name('users.store');
 
 
     // Undefined Routes | 404
