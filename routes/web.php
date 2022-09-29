@@ -29,6 +29,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // Resource Category
     Route::resource('categories', 'CategoryController');
 
+    // User Details Page
+    Route::get('/users', 'UserController@index')->name('users.index');
+
+
     // Undefined Routes | 404
     Route::get('/{any?}', function () {
         abort('404');

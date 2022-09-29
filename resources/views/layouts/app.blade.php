@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link @if(Route::is('admin.categories.index')) active @endif" href="{{ route('admin.categories.index') }}">Categorie</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(Route::is('admin.users.index')) active @endif" href="{{ route('admin.users.index') }}">Utenti</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
