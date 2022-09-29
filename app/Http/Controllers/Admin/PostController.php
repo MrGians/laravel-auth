@@ -15,15 +15,19 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
-        $posts = Post::orderBy('updated_at', 'DESC')
-        ->paginate(15);
         $categories = Category::all();
+
+        $query = Post::orderBy('updated_at', 'DESC');
+        $selected_category = $request->query('category_id');
         
-        return view('admin.posts.index', compact('posts', 'categories'));
+        $posts = $selected_category ? $query->where('category_id', $selected_category)->paginate(15) : $query->paginate(15);
+        
+        return view('admin.posts.index', compact('posts', 'categories', 'selected_category'));
     }
 
     /**
