@@ -46,12 +46,19 @@
         <textarea type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content', $post->content) }}</textarea>
       </div>
     </div>
-    {{-- Is Published --}}
     <div class="col-12">
+      {{-- Is Published --}}
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" @if(old('is_published', $post->is_published)) checked @endif >
-        <label class="form-check-label" for="is_published">Check me out</label>
+        <label class="form-check-label" for="is_published">Pubblica</label>
       </div>
+      {{-- Switch Authors --}}
+      @if ($post->exists && $post->user_id !== Auth::id())
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="switch_author" name="switch_author" value="1" @if(old('switch_author')) checked @endif >
+        <label class="form-check-label" for="switch_author">Cambia Autore [Attuale: {{ $post->author->name }}]</label>
+      </div>
+      @endif
     </div>
     {{-- Actions --}}
     <div class="col-12">

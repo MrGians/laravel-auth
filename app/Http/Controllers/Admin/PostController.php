@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -63,6 +64,7 @@ class PostController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         $data['is_published'] = array_key_exists('is_published', $data);
+        $data['user_id'] = Auth::id();
         $post = new Post();
         $post->fill($data);
         $post->save();
@@ -121,6 +123,7 @@ class PostController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         $data['is_published'] = array_key_exists('is_published', $data);
+        if(isset($data['switch_author'])) $data['user_id'] = Auth::id();
         $post->update($data);
         
         return view('admin.posts.show', compact('post'))

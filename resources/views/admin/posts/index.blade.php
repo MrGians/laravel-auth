@@ -12,6 +12,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Titolo</th>
+      <th scope="col">Autore</th>
       <th scope="col">Categoria</th>
       <th scope="col">Slug</th>
       <th scope="col">Stato</th>
@@ -25,6 +26,7 @@
     <tr>
       <th scope="row">{{ $post->id }}</th>
       <td>{{ $post->title }}</td>
+      <td>{{ $post->author->name ?? 'Anonimo' }}</td>
       <td>
           <span class="badge badge-{{ $post->category->color ?? 'secondary'}}">
             {{ $post->category->label ?? 'Nessuna'}}
@@ -60,7 +62,7 @@
     </tr>
     @empty
     <tr>
-      <th class="text-center h2" colspan="8">Non è presente nessun Post.</th>
+      <th class="text-center h2" colspan="9">Non è presente nessun Post.</th>
     </tr>
     @endforelse
   </tbody>

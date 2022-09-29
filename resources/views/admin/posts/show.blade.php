@@ -19,6 +19,7 @@
           <p class="card-text">{{ $post->content }}</p>
           <p class="card-text"><small class="text-muted">Creato il: {{ $post->created_at }}</small></p>
           <p class="card-text"><small class="text-muted">Ultima Modifica: {{ $post->updated_at }}</small></p>
+          <p class="card-text"><strong>Autore: </strong><em>{{ $post->author->name ?? 'Anonimo' }}</em></p>
           <p class="card-text">
             <strong>Stato: </strong>
             <strong class="text-{{ $post->is_published ? 'success' : 'danger' }}">{{ $post->is_published ? 'Pubblicato' : 'Non Pubblicato' }}</strong>
