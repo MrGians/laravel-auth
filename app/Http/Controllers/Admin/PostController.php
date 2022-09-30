@@ -156,7 +156,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if(count($post->tags)) $post->tags()->detach();
         $post->delete();
+        
         return redirect()->route('admin.posts.index')
         ->with('message', 'Il Post è stato eliminato correttamente')->with('type', 'success');
     }
