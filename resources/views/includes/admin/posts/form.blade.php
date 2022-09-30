@@ -54,7 +54,7 @@
         <legend>Tags</legend>
         @foreach ($tags as $tag)
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="tag-{{ $tag->label }}" value="{{ $tag->id }}" name="tags[]">
+          <input class="form-check-input" type="checkbox" id="tag-{{ $tag->label }}" value="{{ $tag->id }}" name="tags[]" @if(in_array($tag->id, old('tags', $post_tag_ids ?? []))) checked @endif>
           <label class="form-check-label" for="tag-{{ $tag->label }}">{{ $tag->label }}</label>
         </div>
         @endforeach

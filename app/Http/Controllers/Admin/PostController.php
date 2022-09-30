@@ -104,7 +104,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::select('id', 'label')->get();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::select('id', 'label')->get();
+        $post_tag_ids = $post->tags->pluck('id')->toArray();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'post_tag_ids'));
     }
 
     /**
@@ -120,7 +122,8 @@ class PostController extends Controller
             'title' => ['required','string','min:5','max:100', Rule::unique('posts')->ignore($post->id)],
             'thumb' => 'nullable|url',
             'content' => 'required|string',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ], [
             'title.required' => 'Il Titolo è obbligatorio',
             'title.min' => 'Il Titolo deve contenere almeno :min caratteri',
@@ -128,7 +131,8 @@ class PostController extends Controller
             'title.unique' => "Il Titolo \"$request->title\" esiste già",
             'thumb.url' => "L'immagine deve essere un URL valido",
             'content.required' => 'Il Contenuto è obbligatorio',
-            'category_id.exists' => 'La Categoria selezionata non esiste'
+            'category_id.exists' => 'La Categoria selezionata non esiste',
+            'tags.exists' => 'Uno o più Tag selezionati non sono presenti nella lista'
         ]);
 
         $data = $request->all();
@@ -136,6 +140,9 @@ class PostController extends Controller
         $data['is_published'] = array_key_exists('is_published', $data);
         if(isset($data['switch_author'])) $data['user_id'] = Auth::id();
         $post->update($data);
+
+        if(!array_key_exists('tags', $data)) $post->tags()->detach();
+        else $post->tags()->sync($data['tags']);
         
         return view('admin.posts.show', compact('post'))
         ->with('message', 'Il Post è stato modificato correttamente')->with('type', 'success');
