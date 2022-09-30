@@ -31,6 +31,7 @@
       <th scope="col">Titolo</th>
       <th scope="col">Autore</th>
       <th scope="col">Categoria</th>
+      <th scope="col">Tag</th>
       <th scope="col">Slug</th>
       <th scope="col">Stato</th>
       <th scope="col">Ultima Modifica</th>
@@ -48,6 +49,13 @@
           <span class="badge badge-{{ $post->category->color ?? 'secondary'}}">
             {{ $post->category->label ?? 'Nessuna'}}
           </span>            
+      </td>
+      <td>
+        @forelse ($post->tags as $tag)
+          <span class="badge badge-pill text-white" style="background-color: {{ $tag->color }}">{{ $tag->label }}</span>
+        @empty
+          <span class="badge badge-pill badge-secondary text-white">N/D</span>
+        @endforelse
       </td>
       <td>{{ $post->slug }}</td>
       <td class="align-middle">
@@ -79,7 +87,7 @@
     </tr>
     @empty
     <tr>
-      <th class="text-center h2" colspan="9">Non è presente nessun Post.</th>
+      <th class="text-center h2" colspan="10">Non è presente nessun Post.</th>
     </tr>
     @endforelse
   </tbody>

@@ -11,10 +11,19 @@
       <div class="col-md-8">
         <div class="card-body">
           <h3 class="card-title">{{ $post->title }}</h3>
-          <h6>Categoria: 
+          <h6>
+            Categoria: 
             <span class="badge badge-{{ $post->category->color ?? 'secondary'}}">
               {{ $post->category->label ?? 'Nessuna'}}
             </span> 
+          </h6>
+          <h6>
+            Tags: 
+            @forelse ($post->tags as $tag)
+            <span class="badge badge-pill text-white" style="background-color: {{ $tag->color }}">{{ $tag->label }}</span>
+            @empty
+            <span class="badge badge-pill badge-secondary text-white">N/D</span>
+            @endforelse
           </h6>
           <p class="card-text">{{ $post->content }}</p>
           <p class="card-text"><small class="text-muted">Creato il: {{ $post->created_at }}</small></p>
