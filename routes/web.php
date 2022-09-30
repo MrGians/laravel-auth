@@ -30,6 +30,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // Resource Category
     Route::resource('categories', 'CategoryController');
 
+    // Resource Tag
+    Route::resource('tags', 'TagController');
+
     // User Details Page
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/users/create', 'UserController@create')->name('users.create');
