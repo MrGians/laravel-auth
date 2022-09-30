@@ -163,7 +163,7 @@ class PostController extends Controller
         ->with('message', 'Il Post è stato eliminato correttamente')->with('type', 'success');
     }
 
-    public function destroyAll()
+    public function destroy_all()
     {
         Post::query()->delete();
         

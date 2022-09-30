@@ -25,7 +25,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // Resource Post
     Route::resource('posts', 'PostController');
     Route::patch('/posts/{post}/toggle', 'PostController@toggle')->name('posts.toggle');
-    Route::delete('/posts', 'PostController@destroyAll')->name('posts.destroyAll');
+    Route::delete('/posts', 'PostController@destroy_all')->name('posts.destroy_all');
 
     // Resource Category
     Route::resource('categories', 'CategoryController');
