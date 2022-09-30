@@ -163,6 +163,14 @@ class PostController extends Controller
         ->with('message', 'Il Post è stato eliminato correttamente')->with('type', 'success');
     }
 
+    public function destroyAll()
+    {
+        Post::query()->delete();
+        
+        return redirect()->route('admin.posts.index')
+        ->with('message', 'Tutti i Post sono stati eliminati correttamente')->with('type', 'success');
+    }
+
     /**
      * Toggle is_published column from posts table.
      *

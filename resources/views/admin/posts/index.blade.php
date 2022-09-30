@@ -22,6 +22,14 @@
       <a class="btn btn-sm btn-success ml-2 flex-shrink-0" href="{{ route('admin.posts.create') }}">
         <i class="fa-solid fa-plus"></i> Crea nuovo
       </a>
+      {{-- Delete All Post --}}
+      <form action="{{ route('admin.posts.destroyAll') }}" method="POST"  class="delete-form">
+      @csrf
+      @method('DELETE')
+      <button class="btn btn-sm btn-danger ml-2 flex-shrink-0" type="submit">
+        <i class="fa-solid fa-plus"></i> Elimina tutto
+      </button>
+      </form>
     </div>
   </div>
   <table class="table">
