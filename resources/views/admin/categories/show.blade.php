@@ -24,7 +24,7 @@
             <a class="btn btn-warning ml-2" href="{{ route('admin.categories.edit', $category) }}">
               <i class="fa-solid fa-pen-to-square"></i> Modifica
             </a>
-            <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="delete-form ml-2">
+            <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="delete-form delete-category ml-2">
               @method('DELETE')
               @csrf
               <button class="btn btn-danger btn-outline" type="submit">

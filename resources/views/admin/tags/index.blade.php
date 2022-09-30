@@ -37,7 +37,7 @@
         <a class="btn btn-sm btn-warning ml-2" href="{{ route('admin.tags.edit', $tag) }}">
           <i class="fa-solid fa-pen-to-square"></i>
         </a>
-        <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST" class="delete-form ml-2">
+        <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST" class="delete-form delete-tag ml-2">
           @method('DELETE')
           @csrf
           <button class="btn btn-sm btn-danger btn-outline" type="submit">

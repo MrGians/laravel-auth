@@ -37300,7 +37300,26 @@ formsToDelete.forEach(function (form) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var target = form.classList.contains("delete-all") ? "tutti i" : "questo";
-    var confirmation = confirm("Vuoi cancellare definitivamente ".concat(target, " Post? L'azione \xE8 irreversibile"));
+    var element = "l'elemento";
+    var cls = form.classList;
+
+    switch (true) {
+      case cls.contains("delete-tag"):
+        element = "Tag";
+        break;
+
+      case cls.contains("delete-post"):
+        element = "Post";
+        break;
+
+      case cls.contains("delete-category"):
+        element = "Categoria";
+        target = form.classList.contains("delete-all") ? "tutte le" : "questa";
+        if (target == "tutte le") element = "Categorie";
+        break;
+    }
+
+    var confirmation = confirm("Vuoi cancellare definitivamente ".concat(target, " ").concat(element, "? L'azione \xE8 irreversibile"));
     if (confirmation) form.submit();
   });
 });

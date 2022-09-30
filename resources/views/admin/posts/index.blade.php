@@ -23,7 +23,7 @@
         <i class="fa-solid fa-plus"></i> Crea nuovo
       </a>
       {{-- Delete All Post --}}
-      <form action="{{ route('admin.posts.destroy_all') }}" method="POST"  class="delete-form delete-all">
+      <form action="{{ route('admin.posts.destroy_all') }}" method="POST"  class="delete-form delete-post delete-all">
       @csrf
       @method('DELETE')
       <button class="btn btn-sm btn-danger ml-2 flex-shrink-0" type="submit">
@@ -84,7 +84,7 @@
         <a class="btn btn-sm btn-warning ml-2" href="{{ route('admin.posts.edit', $post) }}">
           <i class="fa-solid fa-pen-to-square"></i>
         </a>
-        <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="delete-form ml-2">
+        <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="delete-form delete-post ml-2">
           @method('DELETE')
           @csrf
           <button class="btn btn-sm btn-danger btn-outline" type="submit">
