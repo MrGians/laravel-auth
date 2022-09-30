@@ -43,7 +43,7 @@ class TagController extends Controller
     {
         $request->validate([
             'label' => 'required|string|min:1|max:10|unique:tags',
-            'color' => 'required|string',
+            'color' => 'required|string|min:7|max:7',
         ], [
             'label.required' => 'Il Label è obbligatorio',
             'label.min' => 'Il Label deve contenere almeno :min caratteri',
@@ -51,6 +51,8 @@ class TagController extends Controller
             'label.unique' => "Il label \"$request->label\" esiste già",
             'color.required' => 'Il Colore è obbligatorio',
             'color.string' => 'Il Colore deve essere una stringa',
+            'color.min' => 'Il Colore deve essere un Esadecimale => #ff0000 [:min caratteri]',
+            'color.max' => 'Il Colore deve essere un Esadecimale => #ff0000 [:max caratteri]',
         ]);
 
         $data = $request->all();
@@ -96,7 +98,7 @@ class TagController extends Controller
     {
         $request->validate([
             'label' => ['required','string','min:1','max:20', Rule::unique('tags')->ignore($tag->id)],
-            'color' => 'required|string',
+            'color' => 'required|string|min:7|max:7',
         ], [
             'label.required' => 'Il Label è obbligatorio',
             'label.min' => 'Il Label deve contenere almeno :min caratteri',
@@ -104,6 +106,8 @@ class TagController extends Controller
             'label.unique' => "Il label \"$request->label\" esiste già",
             'color.required' => 'Il Colore è obbligatorio',
             'color.string' => 'Il Colore deve essere una stringa',
+            'color.min' => 'Il Colore deve essere un Esadecimale => #ff0000 [:min caratteri]',
+            'color.max' => 'Il Colore deve essere un Esadecimale => #ff0000 [:max caratteri]',
         ]);
 
         $data = $request->all();
