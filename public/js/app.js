@@ -37299,7 +37299,8 @@ var formsToDelete = document.querySelectorAll(".delete-form");
 formsToDelete.forEach(function (form) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var confirmation = confirm("Vuoi cancellare definitivamente questo Post? L'azione è irreversibile");
+    var target = form.classList.contains("delete-all") ? "tutti i" : "questo";
+    var confirmation = confirm("Vuoi cancellare definitivamente ".concat(target, " Post? L'azione \xE8 irreversibile"));
     if (confirmation) form.submit();
   });
 });
