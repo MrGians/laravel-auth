@@ -30,7 +30,7 @@ class TagController extends Controller
     public function create()
     {
         $tag = new Tag();
-        return view('admin.categories.create', compact('tag'));
+        return view('admin.tags.create', compact('tag'));
     }
 
     /**
