@@ -46,6 +46,22 @@
         <textarea type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content', $post->content) }}</textarea>
       </div>
     </div>
+    {{-- Tags --}}
+    @if (!empty($tags))
+    <div class="col-12">
+      <hr/>
+      <fieldset>
+        <legend>Tags</legend>
+        @foreach ($tags as $tag)
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="tag-{{ $tag->label }}" value="{{ $tag->id }}" name="tags[]">
+          <label class="form-check-label" for="tag-{{ $tag->label }}">{{ $tag->label }}</label>
+        </div>
+        @endforeach
+      </fieldset>
+      <hr/>
+    </div>
+    @endif
     <div class="col-12">
       {{-- Is Published --}}
       <div class="form-check">

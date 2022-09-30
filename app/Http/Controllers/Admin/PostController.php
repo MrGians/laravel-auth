@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,8 @@ class PostController extends Controller
     {
         $post = new Post();
         $categories = Category::select('id', 'label')->get();
-        return view('admin.posts.create', compact('post', 'categories'));
+        $tags = Tag::select('id', 'label')->get();
+        return view('admin.posts.create', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -50,11 +52,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|string|min:5|max:100|unique:posts',
             'thumb' => 'nullable|url',
             'content' => 'required|string',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ], [
             'title.required' => 'Il Titolo è obbligatorio',
             'title.min' => 'Il Titolo deve contenere almeno :min caratteri',
@@ -62,7 +66,8 @@ class PostController extends Controller
             'title.unique' => "Il Titolo \"$request->title\" esiste già",
             'thumb.url' => "L'immagine deve essere un URL valido",
             'content.required' => 'Il Contenuto è obbligatorio',
-            'category_id.exists' => 'La Categoria selezionata non esiste'
+            'category_id.exists' => 'La Categoria selezionata non esiste',
+            'tags.exists' => 'Uno o più Tag selezionati non sono presenti nella lista'
         ]);
 
         $data = $request->all();
@@ -72,6 +77,8 @@ class PostController extends Controller
         $post = new Post();
         $post->fill($data);
         $post->save();
+
+        if(array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
 
         return redirect()->route('admin.posts.show', compact('post'))
         ->with('message', 'Il Post è stato creato correttamente')->with('type', 'success');
