@@ -10,6 +10,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -165,7 +166,7 @@ class PostController extends Controller
 
     public function destroy_all()
     {
-        Post::query()->delete();
+        DB::table('posts')->delete();
         
         return redirect()->route('admin.posts.index')
         ->with('message', 'Tutti i Post sono stati eliminati correttamente')->with('type', 'success');
