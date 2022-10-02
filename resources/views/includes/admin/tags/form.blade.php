@@ -27,7 +27,7 @@
     {{-- Actions --}}
     <div class="col-12">
       <div class="form-group d-flex justify-content-between">
-        <a class="btn btn-secondary ml-2" href="@if($tag->exists){{ route('admin.tags.show', $tag) }}@else{{ route('admin.categories.index') }}@endif">
+        <a class="btn btn-secondary ml-2" href="@if($tag->exists){{ route('admin.tags.show', $tag) }}@else{{ route('admin.tags.index') }}@endif">
           <i class="fa-solid fa-arrow-rotate-left"></i> Indietro
         </a>
         <button class="btn btn-success btn-outline" type="submit">
