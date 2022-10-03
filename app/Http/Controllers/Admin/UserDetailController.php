@@ -12,7 +12,7 @@ class UserDetailController extends Controller
 
     public function edit()
     {
-        $user_details = Auth::user()->details;
+        $user_details = Auth::user()->detail;
         return view('admin.userdetails.edit', compact('user_details'));
     }
 
@@ -33,10 +33,10 @@ class UserDetailController extends Controller
         ]);
 
         $data = $request->all();
-        $user_details = Auth::user()->details;
+        $user_details = Auth::user()->detail;
         $user_details->update($data);
 
-        return redirect()->route('admin.userdetails.edit')
+        return redirect()->route('admin.home')
         ->with('message', 'Le Informazioni sono state aggiornate correttamente')->with('type', 'success');
     }
 }
