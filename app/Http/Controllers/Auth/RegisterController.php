@@ -71,8 +71,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        // Added details to user
         $user_details = new UserDetail();
         $user_details->user_id = $user->id;
+        $user_details->save();
 
         return $user;
     }
