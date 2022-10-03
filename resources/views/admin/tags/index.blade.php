@@ -60,4 +60,35 @@
   {{ $tags->links() }}
 @endif
 
+{{-- Post List per Tag --}}
+<h2 class="my-3 text-center">Elenco Post per Categoria</h2>
+
+<div id="accordion">
+  @foreach ($tags as $tag)
+  <div class="card">
+    {{-- Accordion Head --}}
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn text-white" style="background-color: {{ $tag->color }}" data-toggle="collapse" data-target="#{{ $tag->label }}" aria-expanded="true" aria-controls="{{ $tag->label }}">
+          {{ $tag->label }} [{{ count($tag->posts) }}]
+        </button>
+      </h5>
+    </div>
+    {{-- Accordion Content --}}
+    <div id="{{ $tag->label }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          @forelse ($tag->posts as $tag_post)
+            <li><a href="{{ route('admin.posts.show', $tag_post) }}">{{ $tag_post->title }}</a></li>
+          @empty
+            <li>Nessun Post associato a questo Tag</li>
+          @endforelse
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  @endforeach
+</div>
+
 @endsection
