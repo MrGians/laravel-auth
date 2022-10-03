@@ -13,6 +13,7 @@
       <th scope="col">#</th>
       <th scope="col">Label</th>
       <th scope="col">Color</th>
+      <th scope="col">N. Post</th>
       <th scope="col">Ultima Modifica</th>
       <th scope="col">Data Creazione</th>
       <th scope="col">Azioni</th>
@@ -28,6 +29,7 @@
             {{ $tag->color}}
           </span>            
       </td>
+      <td>{{ count($tag->posts) }}</td>
       <td>{{ $tag->updated_at }}</td>
       <td>{{ $tag->created_at }}</td>
       <td class="d-flex">
