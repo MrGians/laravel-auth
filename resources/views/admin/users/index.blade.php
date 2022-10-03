@@ -19,21 +19,9 @@
     @forelse ($users as $user)
     <tr>
       <th scope="row">{{ $user->id }}</th>
-
-      @if($user->detail)
       <td>{{ $user->detail->first_name ?? 'N/D' }}</td>
       <td>{{ $user->detail->last_name ?? 'N/D' }}</td>
       <td>{{ $user->detail->phone ?? 'N/D' }}</td>
-      @elseif($user->id == Auth::id())
-      <td class="text-center" colspan="3">
-        <a class="btn btn-sm btn-success ml-2" href="{{ route('admin.users.create') }}">
-          <i class="fa-solid fa-plus"></i> Aggiungi i tuoi dettagli
-        </a>
-      </td>
-      @else
-      <td class="text-center" colspan="3"><strong>Dettagli non disponibili</strong></td>
-      @endif
-
       <td>{{ $user->email }}</td>
       <td>{{ count($user->posts) }}</td>
       <td>{{ $user->updated_at }}</td>
@@ -41,7 +29,7 @@
     </tr>
     @empty
     <tr>
-      <th class="text-center h2" colspan="8">Non è presente nessuna Utente.</th>
+      <th class="text-center h2" colspan="8">Non è presente nessun Utente.</th>
     </tr>
     @endforelse
   </tbody>
