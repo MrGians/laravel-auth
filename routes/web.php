@@ -36,7 +36,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // User Details Page
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/userdetails/edit', 'UserDetailController@edit')->name('userdetails.edit');
-    Route::post('/userdetails', 'UserDetailController@update')->name('userdetails.update');
+    Route::put('/userdetails', 'UserDetailController@update')->name('userdetails.update');
 
 
     // Undefined Routes | 404
